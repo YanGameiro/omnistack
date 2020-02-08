@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const socketio = require('socket.io');
@@ -11,11 +10,6 @@ const routes = require('./routes');
 const app = express();
 const server = http.Server(app);
 const io = socketio(server);
-
-mongoose.connect(process.env.DB_STRING_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
 
 const connectedUsers = {};
 

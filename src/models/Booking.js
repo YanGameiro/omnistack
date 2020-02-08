@@ -1,16 +1,19 @@
-const mongoose = require('mongoose');
+const db = require('../database/database');
 
-const BookingSchema = new mongoose.Schema({
-    date: String,
-    approved: Boolean,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+const TABLE_NAME = 'bookings';
+
+module.exports = {
+    async create(data) {
+        const inserted = await db.insert(TABLE_NAME,data);
+        
+        return inserted.insertId;
     },
-    spot: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Spot'
+    async getById(bookingId) {
+        const found = await db.fetch(['id', 'requested_date', 'approved', 'interested_user_id', 'wanted_spot_id'],TABLE_NAME,{id : bookingId});
+        return found[0];
+    },
+    async update(bookingId, data) {
+        const updated = await db.update(TABLE_NAME, bookingId, data);
+        return bookingId;
     }
-});
-
-module.exports = mongoose.model('Booking', BookingSchema);
+}

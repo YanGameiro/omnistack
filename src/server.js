@@ -31,6 +31,6 @@ app.use('/files', express.static(
 ));
 app.use(routes);
 
-console.log('started at :3333');
+console.log('started');
 
-server.listen(3333);
+server.listen(process.env.PORT || 3333);

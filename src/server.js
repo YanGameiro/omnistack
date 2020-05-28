@@ -27,7 +27,10 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(
-    path.resolve( __dirname, '..', 'uploads')
+    path.resolve(__dirname, '..', 'uploads')
+));
+app.use('/assets', express.static(
+    path.resolve(__dirname, '..', 'public-assets')
 ));
 app.use(routes);
 

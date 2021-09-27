@@ -24,7 +24,7 @@ module.exports = {
 
         for (i = 0; i < spots.length; i++) {
 
-            let thumbnail_url = `http://192.168.1.6:3333/assets/default-image.jpg`;
+            let thumbnail_url = `${process.env.BACKEND_API_URL}/assets/default-image.jpg`;
             if (spots[i].file) {
                 thumbnail_url = `${process.env.BACKEND_API_URL}/files/${spots[i].file}`;
             }
